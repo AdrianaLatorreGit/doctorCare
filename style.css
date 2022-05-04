@@ -14,6 +14,7 @@
     --paragraph: hsla(210, 9%, 31%, 1);
     --brand-beige: hsla(39, 100%, 97%, 1);
     --brand-light: hsla(148, 23%, 89%, 1);
+    --bg-light: hsla(180, 14%, 97%, 1);
 
     --nav-height: 7.2rem;
 }
@@ -22,7 +23,9 @@ body {
     width: 100%;
     height: 100%;
     /* para retirar o tamanho do scroll que soma e desloca os elementos quando ele é adivado/desativado */
-    overflow: overlay;
+    /* overflow: overlay; */
+
+    background-color: var(--brand-light);
 }
 body {
     font-family: "DM Sans";
@@ -34,11 +37,17 @@ body {
     margin-inline: auto;
     /* para todos seguirem o mesmo padding da lateral */
     padding-inline: 2.4rem;
+    
 }
 
 ul {
     list-style: none;
 }
+
+section {
+    padding-block: 10rem;
+}
+
 /* =============HEADER=========== */
 header {
     /* propriedade de cálculo para somar marging top do Header com a altura do Nav
@@ -274,4 +283,49 @@ body.menu-expended .logo path {
 }
 body.menu-expended button path {
     stroke: white;
+}
+
+/* =============SERVICES=========== */
+
+#services header h4 {
+    font-size: 1.4rem;
+    line-height: 150%;
+
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+
+    color: var(--prymary-color);
+
+    margin-bottom: 1.6rem;
+}
+
+#services header h2 {
+    font-size: 3rem;
+    line-height: 3.9rem;
+
+    color: var(--headline);
+
+    margin-bottom: 6rem;
+}
+
+#services .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+    /* width: 32.7rem;
+    height: 20.7rem; */
+}
+
+#services .card {
+    padding: 2.4rem;
+    text-align: left;
+
+    background: #ffffff;
+
+    border: 1px solid var(--brand-light);
+    border-radius: 0.6rem;
+}
+
+#sevices .card h3 {
+    margin-block: 1.6rem;
 }
