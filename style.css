@@ -17,6 +17,11 @@
 
     --nav-height: 7.2rem;
 }
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
 body {
     font-family: "DM Sans";
     font-size: 1.6rem; /* agora vale 16px */
@@ -28,6 +33,10 @@ body {
     /* para todos seguirem o mesmo padding da lateral */
     padding-inline: 2.4rem;
 }
+
+ul {
+    list-style: none;
+}
 /* =============HEADER=========== */
 header {
     /* propriedade de cálculo para somar marging top do Header com a altura do Nav
@@ -37,7 +46,8 @@ header {
 
 header::before {
     content: "";
-    width: 100vw;
+    /* nos 100vw ele conta a barrinha de rolamento, trocar por 100% */
+    width: 100%;
     /* somar as alturas para se precisar alteral alguma delas, todas respeitam o posicionamento*/
     height: calc(108rem + var(--nav-height));
     background-color: var(--brand-light);
@@ -158,4 +168,81 @@ nav.scroll svg:nth-child(1) path {
 }
 nav.scroll svg:nth-child(2) path {
     stroke: white;
+}
+
+/* =============MENU-EXPENDED=========== */
+
+/* Overflow retira os elementos que sobram em todos os lados */
+body.menu-expanded {
+    overflow: hidden;
+}
+
+.menu,
+.close-menu,
+body.menu-expended .open-menu {
+    opacity: 0;
+    visibility: hidden;
+}
+
+body.menu-expended .menu,
+body.menu-expended .close-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+body.menu-expended .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: var(--prymary-color);
+
+    width: 100vw;
+    height: 100vh;
+}
+body.menu-expended nav {
+    position: relative;
+}
+
+.menu ul:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    gap: 4.8rem;
+
+    margin-top: 6rem;
+
+    font-weight: 700;
+    font-size: 2.4rem;
+    line-height: 3.1rem;
+}
+
+.menu ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu .button {
+    background: #ffffff;
+    border-radius: 4rem;
+
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 2.3rem;
+    text-transform: uppercase;
+    /* retira o sublinhado que vem através do link */
+    text-decoration: none;
+
+    color: var(--prymary-color);
+
+    display: inline-block;
+    padding: 16px 32px;
+
+    margin-top: 4.8rem;
+    margin-bottom: 8rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 3.2rem;
+    align-items: center;
+    justify-content: center;
 }
