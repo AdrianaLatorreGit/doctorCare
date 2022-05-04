@@ -21,6 +21,8 @@ html,
 body {
     width: 100%;
     height: 100%;
+    /* para retirar o tamanho do scroll que soma e desloca os elementos quando ele é adivado/desativado */
+    overflow: overlay;
 }
 body {
     font-family: "DM Sans";
@@ -166,8 +168,14 @@ nav.scroll {
 nav.scroll svg:nth-child(1) path {
     fill: white;
 }
-nav.scroll svg:nth-child(2) path {
+nav.scroll button path {
     stroke: white;
+}
+
+nav button {
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 /* =============MENU-EXPENDED=========== */
@@ -175,6 +183,12 @@ nav.scroll svg:nth-child(2) path {
 /* Overflow retira os elementos que sobram em todos os lados */
 body.menu-expanded {
     overflow: hidden;
+}
+
+/* (> *)Pegando todos os filho do primeiro nível */
+/* sudo class ou pseudo class (> : not) que indica quem não vai ser aplicado */
+body.menu-expended > :not(nav) {
+    display: none;
 }
 
 .menu,
@@ -198,6 +212,8 @@ body.menu-expended .menu {
 
     width: 100vw;
     height: 100vh;
+
+    padding-top: var(--nav-height);
 }
 body.menu-expended nav {
     position: relative;
@@ -245,4 +261,17 @@ body.menu-expended nav {
     gap: 3.2rem;
     align-items: center;
     justify-content: center;
+}
+
+body.menu-expended .logo,
+body.menu-expended nav button {
+    position: relative;
+    z-index: 100;
+}
+
+body.menu-expended .logo path {
+    fill: white;
+}
+body.menu-expended button path {
+    stroke: white;
 }

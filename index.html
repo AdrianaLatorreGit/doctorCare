@@ -13,7 +13,7 @@
             rel="stylesheet"
         />
     </head>
-    <body onscroll="onScroll()" class="menu-expended">
+    <body onscroll="onScroll()" class="">
         <nav id="navigation" class="">
             <div class="wrapper">
                 <a class="logo" href="#">
@@ -154,7 +154,12 @@
                         </li>
                     </ul>
                 </div>
-                <button class="open-menu">
+                <button
+                    aria-expanded="false"
+                    aria-label="Abrir menu"
+                    onclick="openMenu()"
+                    class="open-menu"
+                >
                     <svg
                         width="40"
                         height="40"
@@ -185,7 +190,12 @@
                         />
                     </svg>
                 </button>
-                <button class="close-menu">
+                <button
+                    aria-expanded="true"
+                    aria-label="Fechar menu"
+                    onclick="closeMenu()"
+                    class="close-menu"
+                >
                     <svg
                         width="40"
                         height="40"
