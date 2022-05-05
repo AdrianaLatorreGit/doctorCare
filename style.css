@@ -48,10 +48,193 @@ ul {
     list-style: none;
 }
 
+/* Padrao para imagens */
+img {
+    max-width: 100%;
+}
+
 section {
     padding-block: 10rem;
 }
 
+section header h4 {
+    font-size: 1.4rem; /*agora vale 14px*/
+    font-weight: 700;
+    line-height: 150%;
+    letter-spacing: 0.08rem;
+    color: var(--prymary-color);
+
+    text-transform: uppercase;
+
+    margin-bottom: 1.6rem;
+}
+section header h2 {
+    font-size: 3rem;
+    line-height: 3.9rem;
+
+    color: var(--headline);
+}
+section header h1 {
+    font-size: 3.4rem;
+    color: var(--headline);
+    line-height: 130%;
+    margin-bottom: 2.4rem;
+}
+
+section .content p {
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 150%;
+
+    color: var(--paragraph);
+}
+
+/* =============NAVIGATION=========== */
+
+nav {
+    display: flex;
+
+    height: var(--nav-height);
+
+    position: fixed;
+    top: 0;
+    width: 100vw;
+
+    z-index: 100;
+}
+nav .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav.scroll {
+    background-color: var(--prymary-color);
+}
+
+/* nth-child é o numero do filho que vc quer */
+/* nav.scroll svg:nth-child(1) path {
+    fill: white;
+} */
+
+nav.scroll .logo path {
+    fill: white;
+}
+
+nav.scroll button path {
+    stroke: white;
+}
+
+nav button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* =============MENU-EXPENDED=========== */
+
+/* Overflow retira os elementos que sobram em todos os lados */
+body.menu-expanded {
+    overflow: hidden;
+}
+
+/* (> *)Pegando todos os filho do primeiro nível */
+/* sudo class ou pseudo class (> : not) que indica quem não vai ser aplicado */
+body.menu-expended > :not(nav) {
+    /* display: none; */
+    visibility: hidden;
+}
+
+.menu,
+.close-menu,
+body.menu-expended .open-menu {
+    opacity: 0;
+    visibility: hidden;
+}
+
+body.menu-expended .menu,
+body.menu-expended .close-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu {
+    /* transiçãp do menu */
+    transform: translateY(100%);
+}
+
+body.menu-expended .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: var(--prymary-color);
+
+    width: 100vw;
+    height: 100vh;
+
+    padding-top: var(--nav-height);
+
+    /* transição do menu */
+    transition: transform 300ms;
+    transform: translateY(0);
+}
+
+.menu ul:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    gap: 4.8rem;
+
+    margin-top: 6rem;
+
+    font-weight: 700;
+    font-size: 2.4rem;
+    line-height: 3.1rem;
+}
+
+.menu ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu .button {
+    background: #ffffff;
+    border-radius: 4rem;
+
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 2.3rem;
+    text-transform: uppercase;
+    /* retira o sublinhado que vem através do link */
+    text-decoration: none;
+
+    color: var(--prymary-color);
+
+    display: inline-block;
+    padding: 1.6rem 3.2rem;
+
+    margin-top: 4.8rem;
+    margin-bottom: 8rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 3.2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+body.menu-expended .logo,
+body.menu-expended nav button {
+    position: relative;
+    z-index: 100;
+}
+
+body.menu-expended .logo path {
+    fill: white;
+}
+body.menu-expended button path {
+    stroke: white;
+}
 /* =============HOME=========== */
 #home {
     /* propriedade de cálculo para somar marging top do Header com a altura do Nav
@@ -75,17 +258,6 @@ section {
     z-index: -1;
 }
 
-#home h4 {
-    font-size: 1.4rem; /*agora vale 14px*/
-    color: var(--prymary-color);
-}
-
-#home h1 {
-    font-size: 3.4rem;
-    color: var(--headline);
-    line-height: 130%;
-    margin-bottom: 2.4rem;
-}
 #home p {
     font-size: 1.8rem;
     line-height: 150%;
@@ -156,170 +328,8 @@ section {
     line-height: 150%;
 }
 
-/* =============NAVIGATION=========== */
-nav {
-    display: flex;
-
-    height: var(--nav-height);
-
-    position: fixed;
-    top: 0;
-    left: 50%;
-    /* desloca a metade do elemento no eixo X */
-    transform: translateX(-50%);
-}
-nav .wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-nav.scroll {
-    background-color: var(--prymary-color);
-    width: 100vw;
-}
-
-/* nth-child é o numero do filho que vc quer */
-nav.scroll svg:nth-child(1) path {
-    fill: white;
-}
-nav.scroll button path {
-    stroke: white;
-}
-
-nav button {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-/* =============MENU-EXPENDED=========== */
-
-/* Overflow retira os elementos que sobram em todos os lados */
-body.menu-expanded {
-    overflow: hidden;
-}
-
-/* (> *)Pegando todos os filho do primeiro nível */
-/* sudo class ou pseudo class (> : not) que indica quem não vai ser aplicado */
-body.menu-expended > :not(nav) {
-    display: none;
-}
-
-.menu,
-.close-menu,
-body.menu-expended .open-menu {
-    opacity: 0;
-    visibility: hidden;
-}
-
-body.menu-expended .menu,
-body.menu-expended .close-menu {
-    opacity: 1;
-    visibility: visible;
-}
-
-.menu {
-    /* transiçãp do menu */
-    transform: translateY(100%);
-}
-
-body.menu-expended .menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: var(--prymary-color);
-
-    width: 100vw;
-    height: 100vh;
-
-    padding-top: var(--nav-height);
-
-    /* transição do menu */
-    transition: transform 300ms;
-    transform: translateY(0);
-}
-body.menu-expended nav {
-    position: relative;
-}
-
-.menu ul:nth-child(1) {
-    display: flex;
-    flex-direction: column;
-    gap: 4.8rem;
-
-    margin-top: 6rem;
-
-    font-weight: 700;
-    font-size: 2.4rem;
-    line-height: 3.1rem;
-}
-
-.menu ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.menu .button {
-    background: #ffffff;
-    border-radius: 4rem;
-
-    font-weight: 700;
-    font-size: 1.8rem;
-    line-height: 2.3rem;
-    text-transform: uppercase;
-    /* retira o sublinhado que vem através do link */
-    text-decoration: none;
-
-    color: var(--prymary-color);
-
-    display: inline-block;
-    padding: 1.6rem 3.2rem;
-
-    margin-top: 4.8rem;
-    margin-bottom: 8rem;
-}
-
-.social-links {
-    display: flex;
-    gap: 3.2rem;
-    align-items: center;
-    justify-content: center;
-}
-
-body.menu-expended .logo,
-body.menu-expended nav button {
-    position: relative;
-    z-index: 100;
-}
-
-body.menu-expended .logo path {
-    fill: white;
-}
-body.menu-expended button path {
-    stroke: white;
-}
-
 /* =============SERVICES=========== */
-
-#services header h4 {
-    font-size: 1.4rem;
-    line-height: 150%;
-
-    letter-spacing: 0.08rem;
-    text-transform: uppercase;
-
-    color: var(--prymary-color);
-
-    margin-bottom: 1.6rem;
-}
-
 #services header h2 {
-    font-size: 3rem;
-    line-height: 3.9rem;
-
-    color: var(--headline);
-
     margin-bottom: 6rem;
 }
 
@@ -343,4 +353,20 @@ body.menu-expended button path {
 
 #sevices .card h3 {
     margin-block: 1.6rem;
+}
+
+/* =============ABOUT=========== */
+
+#about {
+    text-align: left;
+    background-color: var(--brand-beige);
+}
+
+#about header h2 {
+    margin-bottom: 2.4rem;
+}
+
+#about .content p {
+    margin-top: 2.4rem;
+    margin-bottom: 6rem;
 }

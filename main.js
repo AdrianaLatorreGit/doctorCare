@@ -20,4 +20,13 @@ function closeMenu() {
 // Scroll Reveal aparecendo os objetos
 // mudar headline pelo elemento que vc quer revelar
 // passar como argumento o objeto a ser revelado
-ScrollReveal({}).reveal("#home");
+ScrollReveal({
+    origin: "top", //direção que a função aparece
+    distance: "30px",
+    duration: 700,
+}).reveal(`#home,
+ #home img, 
+ #home .stats, 
+ #services,
+ #services header,
+ #sevices .card`);
