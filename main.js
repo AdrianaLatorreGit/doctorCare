@@ -16,3 +16,8 @@ function openMenu() {
 function closeMenu() {
     document.body.classList.remove("menu-expended");
 }
+
+// Scroll Reveal aparecendo os objetos
+// mudar headline pelo elemento que vc quer revelar
+// passar como argumento o objeto a ser revelado
+ScrollReveal({}).reveal("#home");
