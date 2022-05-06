@@ -49,6 +49,7 @@ ul {
 }
 
 /* Padrao para imagens */
+/* nesse caso segue o wrapper, que foi definido qual 100% */
 img {
     max-width: 100%;
 }
