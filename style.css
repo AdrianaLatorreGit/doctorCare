@@ -1,10 +1,11 @@
-/* =========GERAL=============== */
 /* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+/* =========GERAL=============== */
 
 :root {
     font-size: 62.5%; /* 1rem = 10px*/
@@ -15,6 +16,7 @@
     --brand-beige: hsla(39, 100%, 97%, 1);
     --brand-light: hsla(148, 23%, 89%, 1);
     --bg-light: hsla(180, 14%, 97%, 1);
+    --brand-dark: hsla(170, 100%, 14%, 1);
 
     --nav-height: 7.2rem;
 }
@@ -88,6 +90,46 @@ section .content p {
     line-height: 150%;
 
     color: var(--paragraph);
+}
+
+.button {
+    background: var(--prymary-color);
+    border: none;
+    border-radius: 4rem;
+
+    margin-bottom: 6rem;
+
+    /* Dessa maneira o botão tem um tamanho fixo
+    height: 6.2rem;
+    width: 26.3rem; */
+
+    /* Assim ele respeita apenas o padding, deixando mais dinâmico, seguido do fit content para se adequar ao conteúdo interno */
+    padding: 1.6rem /*em cima e embaixo*/ 3.2rem; /*laterais*/
+    width: fit-content;
+
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: var(--brand-dark);
+    transition: background 200ms;
+}
+
+.social-links {
+    display: flex;
+    gap: 3.2rem;
+    align-items: center;
+    justify-content: center;
 }
 
 /* =============NAVIGATION=========== */
@@ -217,11 +259,11 @@ body.menu-expended .menu {
     margin-bottom: 8rem;
 }
 
-.social-links {
-    display: flex;
-    gap: 3.2rem;
-    align-items: center;
-    justify-content: center;
+.menu .button:hover {
+    background-color: var(--prymary-color);
+    color: #fff;
+
+    filter: brightness(1.1);
 }
 
 body.menu-expended .logo,
@@ -237,6 +279,7 @@ body.menu-expended button path {
     stroke: white;
 }
 /* =============HOME=========== */
+
 #home {
     /* propriedade de cálculo para somar marging top do Header com a altura do Nav
     margin-top: 4.1rem; */
@@ -259,6 +302,10 @@ body.menu-expended button path {
     z-index: -1;
 }
 
+#home .button {
+    margin-inline: auto;
+}
+
 #home p {
     font-size: 1.8rem;
     line-height: 150%;
@@ -266,27 +313,6 @@ body.menu-expended button path {
     margin-bottom: 3.2rem;
 }
 
-#home button {
-    background: var(--prymary-color);
-    border: none;
-    border-radius: 4rem;
-
-    margin-bottom: 6rem;
-
-    height: 6.2rem;
-    width: 26.3rem;
-
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 1.4rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.6rem;
-    margin-right: auto;
-    margin-left: auto;
-}
 #home img {
     width: 26.4rem;
 
@@ -370,4 +396,89 @@ body.menu-expended button path {
 #about .content p {
     margin-top: 2.4rem;
     margin-bottom: 6rem;
+}
+
+/* =============CONTACT=========== */
+
+#contact {
+    text-align: left;
+}
+
+#contact header {
+    margin-bottom: 3.2rem;
+}
+
+#contact ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+
+    margin-bottom: 3.2rem;
+}
+
+#contact ul li {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+/* =============FOOTER=========== */
+
+footer {
+    background-color: var(--prymary-color);
+    /* espaço em cima e embaixo */
+    padding-block: 6rem;
+
+    text-align: left;
+
+    color: #fff;
+}
+
+footer .logo {
+    display: inline-block;
+    margin-bottom: 2.4rem;
+}
+
+footer .logo svg {
+    width: 23.6rem;
+    height: 3.1rem;
+}
+
+footer .logo path {
+    fill: white;
+}
+
+footer p {
+    color: var(--brand-beige);
+    /* altura da linha */
+    line-height: 2;
+
+    margin-bottom: 3.2rem;
+}
+
+footer .social-links {
+    justify-content: flex-start;
+}
+
+/* =============BACK TO TOP=========== */
+
+#backToTopButton {
+    position: fixed;
+    /* posição do botão */
+    bottom: 1rem;
+    right: 2.5rem;
+
+    /* iniciar desaparecido */
+    opacity: 0;
+    visibility: hidden;
+
+    /* transição para aparecer o botão suavemente */
+    /* transform: translateY(100%);
+    transition: 200ms; */
+}
+
+/* Para quando ativar (JS) a classe show */
+#backToTopButton.show {
+    opacity: 1;
+    visibility: visible;
 }

@@ -1,9 +1,30 @@
-// Adicionar e remover header
+// ativa as duas funções on scroll
+
 function onScroll() {
+    showNavOnScrool();
+    showBackToTopButtonOnScroll();
+}
+
+// Adicionar e remover header Navigation
+
+function showNavOnScrool() {
     if (scrollY > 0) {
         navigation.classList.add("scroll");
     } else {
         navigation.classList.remove("scroll");
+    }
+}
+
+// Ativar o botão do back to top na metade da página
+// *300 altura tela
+
+function showBackToTopButtonOnScroll() {
+    // para mostrar no inspect do navegador a posição exata de onde começa o botão
+    // console.log(scrollY);
+    if (scrollY > 300) {
+        backToTopButton.classList.add("show");
+    } else {
+        backToTopButton.classList.remove("show");
     }
 }
 
@@ -33,3 +54,7 @@ ScrollReveal({
  #about,
  #about header,
  #about .content`);
+
+//  Para ler aqui antes do HTML e não dar conflito com velocidade de processamento do scroll, para isso remover on Scroll do body. Não deu erro então segue apenas comentado
+//  window.addEventListener('scroll',onScroll)
+// onScroll()
