@@ -10,14 +10,17 @@
 :root {
     font-size: 62.5%; /* 1rem = 10px*/
 
-    --prymary-color: hsla(170, 100%, 26%, 1);
-    --headline: hsla(210, 11%, 15%, 1);
-    --paragraph: hsla(210, 9%, 31%, 1);
-    --brand-beige: hsla(39, 100%, 97%, 1);
-    --brand-light: hsla(148, 23%, 89%, 1);
-    --bg-light: hsla(180, 14%, 97%, 1);
-    --brand-dark: hsla(170, 100%, 14%, 1);
+    /* Hue altera todas as cores do site */
+    --hue: 250;
+    --prymary-color: hsl(var(--hue), 100%, 26%);
+    --headline: hsl(210, 11%, 15%);
+    --paragraph: hsl(210, 9%, 31%);
 
+    --brand-beige: hsl(39, 100%, 97%);
+    --brand-light: hsl(calc(var(--hue) - 22), 23%, 89%);
+    --brand-dark: hsla(var(--hue), 100%, 14%);
+
+    --bg-light: hsl(180, 14%, 97%);
     --nav-height: 7.2rem;
 }
 html {
@@ -130,6 +133,49 @@ section .content p {
     gap: 3.2rem;
     align-items: center;
     justify-content: center;
+}
+
+/* ====Custom colors==== */
+
+/* Cor do cartão */
+#services .card circle {
+    fill: var(--brand-light);
+}
+
+/* cor do botão */
+
+#backToTopButton circle {
+    fill: var(--prymary-color);
+}
+
+#contact li path {
+    stroke: var(--prymary-color);
+}
+
+/* pegando um elemento (fill) específico */
+/* logo */
+#navigation .logo path[fill="#00856F"] {
+    fill: var(--prymary-color);
+}
+
+/* quando entra no scroll */
+#navigation.scroll .logo path {
+    fill: white;
+}
+
+/* cor hamburguer */
+button.open-menu path[stroke="#00856F"] {
+    stroke: var(--prymary-color);
+}
+
+/* quando entra no scroll */
+#navigation.scroll button.open-menu path[stroke="#00856F"] {
+    stroke: white;
+}
+
+/* logo menu navigation */
+body.menu-expended #navigation .logo path {
+    fill: white;
 }
 
 /* =============NAVIGATION=========== */
@@ -291,7 +337,7 @@ body.menu-expended button path {
     /* nos 100vw ele conta a barrinha de rolamento, trocar por 100% */
     width: 100%;
     /* somar as alturas para se precisar alteral alguma delas, todas respeitam o posicionamento*/
-    /* height: calc(108rem + var(--nav-height)); */
+    height: calc(108rem + var(--nav-height));
     height: 115.2rem;
     background-color: var(--brand-light);
     display: block;
