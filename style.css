@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-/* =========GERAL=============== */
+/* =========GERAL================================== */
 
 :root {
     font-size: 62.5%; /* 1rem = 10px*/
@@ -43,8 +43,10 @@ body {
     overflow: overlay;
 }
 .wrapper {
-    width: 37.5rem;
+    /* pegar em 50rem ou, se menor que isso, deixar tudo em 100% da tela */
+    width: min(50rem, 100%);
     margin-inline: auto;
+
     /* para todos seguirem o mesmo padding da lateral */
     padding-inline: 2.4rem;
 }
@@ -135,7 +137,7 @@ section .content p {
     justify-content: center;
 }
 
-/* ====Custom colors==== */
+/* ====Custom colors=================================== */
 
 /* Cor do cartão */
 #services .card circle {
@@ -178,7 +180,7 @@ body.menu-expended #navigation .logo path {
     fill: white;
 }
 
-/* =============NAVIGATION=========== */
+/* =============NAVIGATION=============================== */
 
 nav {
     display: flex;
@@ -220,7 +222,12 @@ nav button {
     cursor: pointer;
 }
 
-/* =============MENU-EXPENDED=========== */
+nav .menu,
+nav .close-menu {
+    position: fixed;
+}
+
+/* =============MENU-EXPENDED================================= */
 
 /* Overflow retira os elementos que sobram em todos os lados */
 body.menu-expanded {
@@ -253,7 +260,6 @@ body.menu-expended .close-menu {
 }
 
 body.menu-expended .menu {
-    position: fixed;
     top: 0;
     left: 0;
     background: var(--prymary-color);
@@ -324,12 +330,13 @@ body.menu-expended .logo path {
 body.menu-expended button path {
     stroke: white;
 }
-/* =============HOME=========== */
+/* =============HOME=============================================== */
 
 #home {
     /* propriedade de cálculo para somar marging top do Header com a altura do Nav
     margin-top: 4.1rem; */
     padding-top: calc(4.1rem + var(--nav-height));
+    padding-block: 0;
 }
 
 #home::before {
@@ -356,6 +363,7 @@ body.menu-expended button path {
     font-size: 1.8rem;
     line-height: 150%;
     color: var(--paragraph);
+
     margin-bottom: 3.2rem;
 }
 
@@ -369,7 +377,7 @@ body.menu-expended button path {
 }
 
 #home .stats {
-    width: 32.7rem;
+    width: 100%;
     /* padding-top: 4rem;
     padding-bottom: 4rem; */
     padding-block: 4rem;
@@ -401,7 +409,8 @@ body.menu-expended button path {
     line-height: 150%;
 }
 
-/* =============SERVICES=========== */
+/* =============SERVICES============================================== */
+
 #services header h2 {
     margin-bottom: 6rem;
 }
@@ -428,7 +437,7 @@ body.menu-expended button path {
     margin-block: 1.6rem;
 }
 
-/* =============ABOUT=========== */
+/* =============ABOUT================================================= */
 
 #about {
     text-align: left;
@@ -444,7 +453,7 @@ body.menu-expended button path {
     margin-bottom: 6rem;
 }
 
-/* =============CONTACT=========== */
+/* =============CONTACT================================================ */
 
 #contact {
     text-align: left;
@@ -468,7 +477,7 @@ body.menu-expended button path {
     gap: 0.8rem;
 }
 
-/* =============FOOTER=========== */
+/* =============FOOTER================================================== */
 
 footer {
     background-color: var(--prymary-color);
@@ -506,7 +515,7 @@ footer .social-links {
     justify-content: flex-start;
 }
 
-/* =============BACK TO TOP=========== */
+/* =============BACK TO TOP============================================== */
 
 #backToTopButton {
     position: fixed;
@@ -527,4 +536,37 @@ footer .social-links {
 #backToTopButton.show {
     opacity: 1;
     visibility: visible;
+}
+
+/*! =============RESPONSIVO================================================ */
+
+@media (min-width: 1024px) {
+    /* =============GERAL================================================= */
+    .wrapper {
+        width: min(112rem, 100%);
+    }
+    /* =============NAVIGATION============================================ */
+
+    /* Reset */
+    nav#navigation .wrapper * {
+        margin: 0;
+        padding: 0;
+        visibility: initial;
+        display: initial;
+        opacity: initial;
+        flex-direction: initial;
+        position: initial;
+        font-size: initial;
+        transform: initial;
+        color: initial;
+        background-color: initial;
+        font-weight: initial;
+    }
+
+    /* não mostra mais na tela */
+    nav#navigation .close-menu,
+    nav.navigation .open-menu,
+    nav#navigation .social-links {
+        display: none;
+    }
 }
