@@ -11,16 +11,18 @@
     font-size: 62.5%; /* 1rem = 10px*/
 
     /* Hue altera todas as cores do site */
-    --hue: 250;
+    --hue: 170;
     --prymary-color: hsl(var(--hue), 100%, 26%);
     --headline: hsl(210, 11%, 15%);
     --paragraph: hsl(210, 9%, 31%);
 
     --brand-beige: hsl(39, 100%, 97%);
     --brand-light: hsl(calc(var(--hue) - 22), 23%, 89%);
+    --brand-light-2: hsl(calc(var(--hue) + 10), 14%, 97%);
     --brand-dark: hsla(var(--hue), 100%, 14%);
 
     --bg-light: hsl(180, 14%, 97%);
+
     --nav-height: 7.2rem;
 }
 html {
@@ -36,12 +38,15 @@ body {
 body {
     font-family: "DM Sans";
     font-size: 1.6rem; /* agora vale 16px */
+
     text-align: center;
-    overflow: overlay;
+
     background-color: var(--bg-light);
+
     /* para retirar o tamanho do scroll que soma e desloca os elementos quando ele é adivado/desativado */
     overflow: overlay;
 }
+
 .wrapper {
     /* pegar em 50rem ou, se menor que isso, deixar tudo em 100% da tela */
     width: min(50rem, 100%);
@@ -70,6 +75,7 @@ section header h4 {
     font-weight: 700;
     line-height: 150%;
     letter-spacing: 0.08rem;
+
     color: var(--prymary-color);
 
     text-transform: uppercase;
@@ -86,6 +92,7 @@ section header h1 {
     font-size: 3.4rem;
     color: var(--headline);
     line-height: 130%;
+
     margin-bottom: 2.4rem;
 }
 
@@ -99,6 +106,7 @@ section .content p {
 
 .button {
     background: var(--prymary-color);
+
     border: none;
     border-radius: 4rem;
 
@@ -123,11 +131,12 @@ section .content p {
     gap: 1.6rem;
 
     text-decoration: none;
+
+    transition: background 200ms;
 }
 
 .button:hover {
     background-color: var(--brand-dark);
-    transition: background 200ms;
 }
 
 .social-links {
@@ -334,18 +343,19 @@ body.menu-expended button path {
 
 #home {
     /* propriedade de cálculo para somar marging top do Header com a altura do Nav
-    margin-top: 4.1rem; */
+    !PROBLEMA AQUI*/
+    /* margin-top: 4.1rem;  */
     padding-top: calc(4.1rem + var(--nav-height));
     padding-block: 0;
 }
 
 #home::before {
-    content: " ";
+    content: "";
     /* nos 100vw ele conta a barrinha de rolamento, trocar por 100% */
     width: 100%;
     /* somar as alturas para se precisar alteral alguma delas, todas respeitam o posicionamento*/
-    height: calc(108rem + var(--nav-height));
-    height: 115.2rem;
+    height: calc(76% + var(--nav-height));
+    /* height: 115.2rem; */
     background-color: var(--brand-light);
     display: block;
 
@@ -542,9 +552,34 @@ footer .social-links {
 
 @media (min-width: 1024px) {
     /* =============GERAL================================================= */
+
+    body {
+        overflow: auto;
+    }
+
     .wrapper {
         width: min(112rem, 100%);
+
+        display: grid;
     }
+
+    /* geral disposição das colunas no grid-area */
+    .col-a {
+        grid-area: A;
+    }
+    .col-b {
+        grid-area: B;
+    }
+
+    section {
+        padding-block: 16rem;
+    }
+
+    section header h2 {
+        font-size: 4rem;
+        line-height: 5.2rem;
+    }
+
     /* =============NAVIGATION============================================ */
 
     /* Reset */
@@ -561,12 +596,243 @@ footer .social-links {
         color: initial;
         background-color: initial;
         font-weight: initial;
+        filter: initial;
     }
 
     /* não mostra mais na tela */
     nav#navigation .close-menu,
-    nav.navigation .open-menu,
+    nav#navigation .open-menu,
     nav#navigation .social-links {
         display: none;
+    }
+
+    nav#navigation .menu {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 60%;
+    }
+
+    nav#navigation .menu ul:nth-child(1) {
+        display: flex;
+        gap: 3.2rem;
+    }
+
+    nav#navigation .menu ul li a {
+        color: var(--prymary-color);
+        opacity: 0.7rem;
+    }
+
+    nav#navigation .menu a.button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 2.4rem;
+
+        border: 1px solid var(--prymary-color);
+        border-radius: 4rem;
+
+        color: var(--prymary-color);
+
+        font-weight: 700;
+        font-size: 1.4rem;
+        line-height: 1.8rem;
+        text-transform: uppercase;
+    }
+
+    nav#navigation .menu a.button:hover {
+        background-color: var(--prymary-color);
+        border: none;
+        color: white;
+    }
+
+    nav#navigation.scroll .menu ul li a {
+        color: var(--brand-light-2);
+        opacity: 0.6rem;
+    }
+
+    nav#navigation.scroll .menu a.button {
+        border-color: white;
+        color: white;
+    }
+
+    /* Para ativar quando passar o mouse em cima */
+
+    nav#navigation .menu li a {
+        transition: opacity 0.4s;
+    }
+
+    nav#navigation .menu li a.active,
+    nav#navigation .menu li a:hover {
+        opacity: 1;
+        font-weight: 700;
+    }
+
+    /* Para a linha em baixo ficar mais bonitinha */
+    nav#navigation .menu li a::after {
+        content: "";
+        width: 0%;
+        height: 2px;
+        background-color: var(--prymary-color);
+
+        position: relative;
+        bottom: -2rem;
+        left: -1rem;
+
+        display: block;
+
+        transition: width 0.2s;
+    }
+
+    nav#navigation.scroll li a::after {
+        background-color: white;
+    }
+
+    nav#navigation .menu li a.active::after,
+    nav#navigation .menu li a:hover::after {
+        padding-inline: 0.8rem;
+        width: 100%;
+    }
+
+    nav#navigation.scroll .menu li a.active,
+    nav#navigation.scroll .menu li a:hover {
+        opacity: 1;
+    }
+
+    nav#navigation.scroll .menu a.button.active,
+    nav#navigation.scroll .menu a.button:hover {
+        background-color: var(--prymary-color);
+        filter: brightness(1.2);
+        border: none;
+    }
+
+    /* =============HOME============================================ */
+
+    #home::before {
+        height: calc(96% - var(--nav-height));
+    }
+
+    #home {
+        padding-top: var(--nav-height);
+    }
+
+    #home .wrapper {
+        /* outra maneira de escrever é por fração (fr) 1fr 1fr */
+        grid-template-columns: 60.5rem 1fr;
+
+        /* Increvelmente se desenha as áreas que vc quer distribuir os elementos, graças ao grid */
+        grid-template-areas:
+            "A B"
+            "C C";
+    }
+    /* Colocando cada elemento nas áreas desenhadas no template */
+    #home .col-a {
+        grid-area: A;
+
+        text-align: left;
+        align-self: center;
+    }
+    #home .col-b {
+        grid-area: B;
+    }
+
+    #home h1 {
+        font-size: 5.2rem;
+    }
+
+    #home .content p {
+        font-size: 1.8rem;
+    }
+
+    #home .stats {
+        grid-area: C;
+
+        flex-direction: row;
+        padding: 6rem;
+        gap: 0;
+    }
+
+    #home .stats .stat + .stat {
+        border-left: 1px solid var(--prymary-color);
+    }
+
+    #home .stats .stat {
+        flex: 1;
+    }
+
+    #home .button {
+        margin: 0;
+    }
+    #home img {
+        width: 42rem;
+    }
+
+    /* =============SERVICES============================================ */
+
+    #services h2 {
+        width: 47rem;
+        margin-inline: auto;
+    }
+
+    #services .cards {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 4rem;
+    }
+
+    #services .card {
+        width: 30%;
+        flex-grow: 1;
+    }
+
+    /* =============ABOUT============================================ */
+
+    #about .wrapper {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "B A";
+        gap: 6.7rem;
+    }
+
+    #about .col-a {
+        align-self: center;
+    }
+
+    #about .content p {
+        margin-bottom: 0;
+    }
+
+    /* =============CONTACT============================================ */
+
+    #contact .wrapper {
+        grid-template-columns: 1fr 57.5rem;
+        grid-template-areas: "A B";
+    }
+
+    #contat h2 {
+        width: 40.4rem;
+    }
+
+    /* =============CONTACT============================================ */
+
+    footer {
+        padding-block: 8rem;
+    }
+
+    footer .wrapper {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "A B";
+    }
+
+    footer .col-a {
+        align-self: center;
+    }
+
+    footer .col-b {
+        align-self: center;
+        justify-self: flex-end;
+    }
+
+    footer p {
+        margin-bottom: 0;
     }
 }
