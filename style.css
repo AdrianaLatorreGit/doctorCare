@@ -343,10 +343,10 @@ body.menu-expended button path {
 
 #home {
     /* propriedade de cálculo para somar marging top do Header com a altura do Nav
-    !PROBLEMA AQUI*/
     /* margin-top: 4.1rem;  */
-    padding-top: calc(4.1rem + var(--nav-height));
+
     padding-block: 0;
+    padding-top: calc(4.1rem + var(--nav-height));
 }
 
 #home::before {
@@ -566,6 +566,7 @@ footer .social-links {
     /* geral disposição das colunas no grid-area */
     .col-a {
         grid-area: A;
+        margin: 4rem;
     }
     .col-b {
         grid-area: B;
